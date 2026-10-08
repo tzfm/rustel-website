@@ -1,0 +1,574 @@
+:root {
+  --black: #14171d;
+  --cyan: #6eb8c2;
+  --magenta: #c45ec8;
+  --white: #d8dde6;
+  --background: #1a1e26;
+  --surface: #222733;
+  --foreground: #c8ced9;
+  --muted: #8a929e;
+  --rule: #3a414d;
+  --comment: #8a929e;
+  --string: #7fbf94;
+  --punctuation: #c49ad6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--black);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 auto;
+  max-width: calc(700px + 2.5rem);
+  padding: 3.5rem 1.25rem 4rem;
+  font: 400 1rem/1.7 ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono",
+    "Liberation Mono", monospace;
+  color: var(--foreground);
+  background: var(--black);
+}
+
+a {
+  color: var(--cyan);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--white);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+code {
+  font: inherit;
+  color: var(--white);
+}
+
+:not(pre) > code {
+  color: var(--cyan);
+  background: var(--surface);
+  padding: 0.12em 0.4em;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 2.5rem;
+  font-size: clamp(1.5rem, 4.2vw, 2.1rem);
+  color: var(--white);
+}
+
+h2 {
+  margin: 3.5rem 0 1rem;
+  scroll-margin-top: 1.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+h2::before {
+  content: "# ";
+  color: var(--magenta);
+}
+
+.logo {
+  display: block;
+  width: min(100%, 37rem);
+  height: auto;
+  filter: saturate(0.72) brightness(0.9);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.lead {
+  margin: 1rem 0 0;
+  max-width: 100%;
+  font-size: 1.05rem;
+}
+
+.switch {
+  position: relative;
+  margin-top: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--background);
+}
+
+.switch > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tabs label {
+  padding: 0.55rem 1.1rem;
+  color: var(--muted);
+  border-right: 1px solid var(--rule);
+  cursor: pointer;
+  user-select: none;
+}
+
+.tabs label:hover {
+  color: var(--white);
+}
+
+#os-macos:checked ~ .tabs label[for="os-macos"],
+#os-linux:checked ~ .tabs label[for="os-linux"],
+#os-windows:checked ~ .tabs label[for="os-windows"] {
+  color: var(--white);
+  background: #4a3550;
+  font-weight: 700;
+}
+
+#os-macos:focus-visible ~ .tabs label[for="os-macos"],
+#os-linux:focus-visible ~ .tabs label[for="os-linux"],
+#os-windows:focus-visible ~ .tabs label[for="os-windows"] {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+
+.cmd {
+  display: none;
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+#os-macos:checked ~ #cmd-macos,
+#os-linux:checked ~ #cmd-linux,
+#os-windows:checked ~ #cmd-windows {
+  display: block;
+}
+
+.cmd pre {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0.875rem 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.command-line {
+  display: flex;
+  align-items: stretch;
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.cmd .copy-status:empty {
+  margin: 0;
+}
+
+.copy-status[data-success] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.cmd pre::before {
+  content: "$ ";
+  color: var(--magenta);
+}
+
+.cmd pre code {
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+.cmd p,
+.aside {
+  margin: 0.8rem 0 0;
+  max-width: 100%;
+  font-size: 0.875rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.aside {
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 40rem) {
+  .tabs label {
+    flex: 1 1 auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+  }
+
+  .tabs label:last-child {
+    border-right: 0;
+  }
+
+  .cmd {
+    padding: 0.75rem;
+  }
+
+  .cmd pre {
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+.shell {
+  margin: 1rem 0 0;
+  padding: 1rem 1.1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--background);
+  line-height: 1.7;
+}
+
+.shell .prompt {
+  color: var(--magenta);
+}
+
+.shell .c {
+  color: var(--comment);
+}
+
+.shell .s {
+  color: var(--string);
+}
+
+.shell .p {
+  color: var(--punctuation);
+}
+
+main > section > p {
+  max-width: 100%;
+}
+
+.basics {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.6rem 1.25rem;
+  max-width: 100%;
+  margin: 1.25rem 0 0;
+}
+
+.basics dt {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.basics dd {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .basics {
+    grid-template-columns: 1fr;
+    gap: 0.15rem 0;
+  }
+
+  .basics dd {
+    margin-bottom: 0.6rem;
+  }
+}
+
+.features {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.features li::before {
+  content: "▸";
+  position: absolute;
+  left: 0.15rem;
+  color: var(--magenta);
+}
+
+.features b {
+  color: var(--cyan);
+}
+
+.studio {
+  margin: 0;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--background);
+}
+
+.studio picture,
+.studio img,
+.studio video,
+.shot picture,
+.shot img,
+.shot video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+.studio picture,
+.studio img,
+.studio video {
+  width: 700px;
+}
+
+.shot picture,
+.shot img,
+.shot video {
+  width: 700px;
+}
+
+.studio video,
+.shot video {
+  aspect-ratio: 1400 / 1056;
+  background: var(--background);
+}
+
+.studio figcaption {
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.gallery {
+  margin-top: 0.5rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 2.75rem 0;
+}
+
+.row > div {
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.shell + .shot {
+  margin-top: 1rem;
+}
+
+.shot {
+  margin: 0;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--background);
+}
+
+.row h3 {
+  font-size: 1.05rem;
+  color: var(--white);
+}
+
+.row p,
+.row .shell {
+  max-width: 100%;
+}
+
+.row p {
+  margin: 0.7rem 0 0;
+}
+
+.row .shell {
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 24rem) {
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+footer p {
+  margin: 0.35rem 0;
+}
+
+footer nav,
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+footer nav {
+  margin-bottom: 0.75rem;
+}
+
+.support-card {
+  padding: 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--background);
+}
+
+.support-card > p:first-child {
+  margin-top: 0;
+}
+
+.support-network {
+  margin: 1.25rem 0 0.5rem;
+  color: var(--cyan);
+  font-size: 0.875rem;
+}
+
+.support-card > .wallet-address {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  overflow-wrap: anywhere;
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+@media (max-width: 40rem) {
+  .support-card {
+    padding: 0.75rem;
+  }
+
+  /* Keeps the 42-character address on one line. A character is about 0.62em wide. */
+  .support-card > .wallet-address {
+    padding: 0.5rem;
+    font-size: min(1rem, calc((100vw - 5.5rem) / 26.5));
+  }
+}
+
+.copy-button {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font: inherit;
+  color: var(--white);
+  background: #4a3550;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  border-color: var(--magenta);
+}
+
+.copy-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.copy-command {
+  position: relative;
+  flex: 0 0 51px;
+  width: 51px;
+  min-height: 58px;
+  padding: 0;
+  border: 0;
+  border-radius: 0 4px 4px 0;
+  color: var(--foreground);
+  background: var(--rule);
+}
+
+.copy-command svg {
+  display: block;
+  margin: auto;
+  fill: currentColor;
+  transform: translateX(2px);
+}
+
+.copy-command:hover {
+  color: var(--cyan);
+}
+
+.copy-feedback {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  color: var(--cyan);
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.copy-command[data-copied] .copy-feedback {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-feedback {
+    transition: none;
+  }
+}
+
+.support-status {
+  margin: 0.6rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.support-status:empty {
+  margin: 0;
+}

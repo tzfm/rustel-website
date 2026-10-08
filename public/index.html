@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rustel: live-code music in your terminal</title>
+<meta name="description" content="Live-code music in your terminal. Rustel is a native engine for the Strudel pattern language. One small binary. No browser. No server.">
+<meta name="theme-color" content="#14171d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://rustel.cc/">
+<meta property="og:title" content="Rustel">
+<meta property="og:site_name" content="Rustel">
+<meta property="og:description" content="Live-code music in your terminal. A native engine for the Strudel pattern language.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rustel.cc/">
+<meta property="og:image" content="https://rustel.cc/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rustel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rustel.cc/og.png">
+<meta name="twitter:image:alt" content="Rustel">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<img class="logo" src="logo.svg" width="740" height="180" alt="Rustel">
+
+<h1>Live-code music in your terminal.</h1>
+<p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, or in your favorite text editor. MIDI, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
+<p class="lead">Already on <a href="https://strudel.cc">strudel.cc</a>? Bring your patterns here. Almost everything from Strudel works. The <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> list the few missing or inactive features.</p>
+</header>
+
+<main>
+
+<section aria-labelledby="install">
+<h2 id="install">Install</h2>
+<div class="switch" role="group" aria-label="Installation operating system">
+<input type="radio" name="os" id="os-macos" checked>
+<input type="radio" name="os" id="os-linux">
+<input type="radio" name="os" id="os-windows">
+<div class="tabs">
+<label for="os-macos">macOS</label>
+<label for="os-linux">Linux / WSL</label>
+<label for="os-windows">Windows</label>
+</div>
+<div class="cmd" id="cmd-macos">
+<div class="command-line">
+<pre><code id="install-macos">curl -fL https://rustel.cc/install | bash</code></pre>
+<button class="copy-button copy-command" type="button" data-copy-target="install-macos" data-copy-status="copy-macos-status" data-copy-label="Install command" aria-label="Copy macOS install command" title="Copy command to clipboard" hidden>
+<svg width="24" height="25" viewBox="0 0 24 25" aria-hidden="true" focusable="false">
+<path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"/>
+<path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"/>
+</svg>
+<span class="copy-feedback" aria-hidden="true">Copied!</span>
+</button>
+</div>
+<p class="copy-status" id="copy-macos-status" role="status"></p>
+<p>Apple Silicon and Intel. Open a new terminal, then run <code>rustelup</code> to install the engine. Then run <code>rustel studio</code>.</p>
+</div>
+<div class="cmd" id="cmd-linux">
+<div class="command-line">
+<pre><code id="install-linux">curl -fL https://rustel.cc/install | bash</code></pre>
+<button class="copy-button copy-command" type="button" data-copy-target="install-linux" data-copy-status="copy-linux-status" data-copy-label="Install command" aria-label="Copy Linux or WSL install command" title="Copy command to clipboard" hidden>
+<svg width="24" height="25" viewBox="0 0 24 25" aria-hidden="true" focusable="false">
+<path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"/>
+<path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"/>
+</svg>
+<span class="copy-feedback" aria-hidden="true">Copied!</span>
+</button>
+</div>
+<p class="copy-status" id="copy-linux-status" role="status"></p>
+<p>x86_64 and ARM64, including WSL 2. Requires glibc 2.39 or later, ALSA, and libudev. Open a new terminal, then run <code>rustelup</code> to install the engine. Then run <code>rustel studio</code>.</p>
+</div>
+<div class="cmd" id="cmd-windows">
+<div class="command-line">
+<pre><code id="install-windows">irm https://rustel.cc/install.ps1 | iex</code></pre>
+<button class="copy-button copy-command" type="button" data-copy-target="install-windows" data-copy-status="copy-windows-status" data-copy-label="Install command" aria-label="Copy Windows install command" title="Copy command to clipboard" hidden>
+<svg width="24" height="25" viewBox="0 0 24 25" aria-hidden="true" focusable="false">
+<path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"/>
+<path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"/>
+</svg>
+<span class="copy-feedback" aria-hidden="true">Copied!</span>
+</button>
+</div>
+<p class="copy-status" id="copy-windows-status" role="status"></p>
+<p>Windows 10 or later, x86_64, in PowerShell 5 or later. Open a new terminal, then run <code>rustelup.cmd</code> to install the engine. Then run <code>rustel studio</code>.</p>
+</div>
+</div>
+<p class="aside"><code>rustelup</code> installs into <code>~/.rustel/bin</code>. On Windows that folder is <code>%USERPROFILE%\.rustel\bin</code>. Run the updater again to refresh, or add <code>--version v0.1.1</code> to pin a build. For dependencies and troubleshooting, see the <a href="https://github.com/tzfm/rustel/blob/main/rustelup/README.md">installation guide</a>. To build from source, follow the <a href="https://github.com/tzfm/rustel/blob/main/docs/building.md">build guide</a>.</p>
+</section>
+
+<section aria-labelledby="what">
+<h2 id="what">What you get</h2>
+<ul class="features">
+<li><b>Strudel patterns</b>: Patterns, samples, synths, and effects from the Strudel language. Supported unless listed in the <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a>.</li>
+<li><b>Native extensions</b>: Standard builds ship extensions from Switch Angel and undefined_aeon. More extensions from other Strudel artists will land natively over time.</li>
+<li><b>Sound checks</b>: Selected scores render in both engines. Waveforms are compared offline for fixed scores, assets, and settings.</li>
+<li><b>Studio</b>: Terminal editor with live update, visuals, a mixer, and a key reference. A bad update leaves the last good score playing.</li>
+<li><b>Your editor</b>: Run <code>rustel song.strudel --watch</code> and edit in your favorite editor. Audio keeps running across saves. Or use the <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin to drive the engine from Neovim.</li>
+<li><b>Session tapes</b>: Each installed update is logged with time. Your jam stays on disk. No arm step. No extra save ritual.</li>
+<li><b>Hardware</b>: Speakers, a microphone or other audio input, MIDI, OSC, or serial. MIDI clock can follow another tempo, or send this set's tempo out.</li>
+<li><b>Offline render</b>: Bounce to WAV or MP3. Same score, assets, and settings on one machine give repeatable output.</li>
+<li><b>Audio thread</b>: Rational cycle math, a native mini-notation parser, and a DSP graph with no allocation on the audio path. SIMD kernels follow your CPU. Low CPU and memory in live play. An error mutes one cycle of one pattern. The clock keeps going.</li>
+</ul>
+</section>
+
+<section aria-labelledby="studio">
+<h2 id="studio">The studio</h2>
+<figure class="studio">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="studio.png" width="1400" height="1056" aria-label="Studio playing a score, with a piano roll and a Braille scope under the pattern.">
+<source src="studio.mp4" type="video/mp4">
+</video>
+<figcaption>Press Ctrl+Enter to update. Same chord as strudel.cc. The piano roll and the scope follow the pattern.</figcaption>
+</figure>
+<dl class="basics">
+<dt>Ctrl+Enter</dt><dd>Update and play. Strudel's update chord. A bad update leaves the last good score playing. Ctrl+. stops.</dd>
+<dt>keyboard</dt><dd>Everything is reachable from the keyboard. The mouse works too. Keyboard-only is the easier grip in a live set.</dd>
+<dt>beat</dt><dd>The sounding step lights in your source. The header dot pulses on the downbeat.</dd>
+<dt>Ctrl+D</dt><dd>Open the reference. Every function in the language, inside the editor.</dd>
+<dt>visuals</dt><dd>Piano roll, punchcard, scope, and spectrum as rows in the editor, plus a mixer and a minimap.</dd>
+<dt>editor</dt><dd>Modeless. Selection, undo, redo, bracketed paste. Saves stay off the audio thread.</dd>
+</dl>
+</section>
+
+<section aria-labelledby="gallery">
+<h2 id="gallery">In the studio</h2>
+<div class="gallery">
+
+<article class="row">
+<div>
+<h3>Widgets</h3>
+<p>Shift+F1 opens a dock of widgets beside the score. Add a scope, a spectrum, a vectorscope, or the event list. Press <code>a</code> to add one. The pictures move with the music.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/widgets.png" width="700" height="528" aria-label="A visuals dock beside the score, with a scope, a spectrum, and drum events while the pattern plays.">
+<source src="videos/widgets.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Themes</h3>
+<p>Ctrl+T opens the theme list. Arrow to a theme and press Enter. You can edit a theme. A theme can draw a Hydra background.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/themes.png" width="700" height="528" aria-label="Fourteen Studio themes, each held for two seconds while a score plays.">
+<source src="videos/themes.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Session tapes</h3>
+<p>The first successful update creates a tape in the set's <code>sessions/</code> folder. It records accepted scores, timing, slider changes, and stops. To capture the audio, record a take. Open a tape from the set panel, or replay it from the shell.</p>
+<pre class="shell"><span class="prompt">$</span> <code>rustel replay tonight.rustel-session</code>
+
+<span class="prompt">$</span> <code>rustel replay tonight.rustel-session --from 600</code></pre>
+<p>Add <code>--from 600</code> to start ten minutes in. For sound on disk, record a take or export a bounce.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/tapes.png" width="700" height="528" aria-label="A playing score, then its session tape: four saves, each block opened in turn.">
+<source src="videos/tapes.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Samples</h3>
+<p>Open Reference with Ctrl+F, then use Tab to reach Samples. Right expands a bank. Space starts or stops a preview. Enter inserts or copies the selection, as shown in the footer. Drop an audio file or folder on the terminal window running Studio to import it.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/samples.png" width="700" height="528" aria-label="Sample search previewing 9000, bd, sd, hh, and oh while a score plays.">
+<source src="videos/samples.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Chords and scales</h3>
+<p>Chords and scales are the next two tabs. Each row draws its notes on a keyboard. Right opens the row. Space plays the chord or the scale. The keys light while it sounds.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/chords.png" width="700" height="528" aria-label="A chord preview lighting the keyboard, then a scale preview running across it.">
+<source src="videos/chords.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Reference</h3>
+<p>Ctrl+D opens documentation for the function at the caret. Ctrl+F shows names, values, or functions that fit the caret position; outside a call, it opens the reference to browse and search. Enter uses the selection, as shown in the footer.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/reference.png" width="700" height="528" aria-label="The reference list for lpf, then that function's arguments, then the list again.">
+<source src="videos/reference.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Visuals</h3>
+<p><code>_pianoroll()</code>, <code>_scope()</code>, <code>_spectrum()</code>, <code>_punchcard()</code>, and the rest draw inside the score. The playhead moves with the clock.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/visuals.png" width="700" height="528" aria-label="A scope, a piano roll, and a spectrum drawn under the score while it plays.">
+<source src="videos/visuals.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Generator and examples</h3>
+<p>The generator tab builds a part from a musical direction. The examples tab holds parts, tracks, sound design, and Hydra sketches. In either tab, Space previews the music and <code>c</code> copies the code. Paste it into the editor, then update the score to play it.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/generator.png" width="700" height="528" aria-label="The generator builds a part, the code is copied and pasted into the score, then an example is taken.">
+<source src="videos/generator.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Mixer</h3>
+<p>F4 opens the mixer. The master and each orbit have a meter and a fader. Ctrl+Shift+Up and Ctrl+Shift+Down move the master.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/mixer.png" width="700" height="528" aria-label="The mixer with master and orbit meters.">
+<source src="videos/mixer.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Live input</h3>
+<p>Ctrl+P opens devices. Enter on audio in makes the highlighted row what <code>s("in")</code> plays. <code>none</code> turns the input off. F4 opens the mixer. The <code>in</code> strip meters that input, and its fader sets the gain. <code>s("in")</code> plays channel 0. <code>s("in:1")</code> plays the next channel. <code>s("in").lpf(700)</code> filters the input.</p>
+<p>Audio out prints the delay under the list: the output, and the round trip once an input is open. The output is how long the sound takes to reach the speaker. The round trip is the return, how long audio in takes to come back with the effect on it. Settings, then Advanced, then audio out latency, sets the output buffer. A smaller buffer shortens that return, if the computer can take it. Both lines follow it.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/devices.png" width="700" height="528" aria-label="The devices panel on audio out with its latency, then audio in, the mixer input meter, a pattern playing s in, then the output buffer stepping and the round trip following.">
+<source src="videos/devices.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>MIDI</h3>
+<p>The midi tab gives each port an in box and an out box. Left and right pick the column. Space ticks it. <code>.midi()</code> sends on a ticked out. <code>midin()</code> reads a ticked in.</p>
+<p>Clock out sends this set's tempo, 24 pulses a beat, with start and stop. Clock in follows another machine. The header shows <code>⇄</code> and the bpm it locked. You still start the score.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/midi.png" width="700" height="528" aria-label="MIDI ports with in and out boxes, a pattern sending with .midi(), then clock out and clock in, and the header tempo locking to an external clock.">
+<source src="videos/midi.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Limiter</h3>
+<p>Open Transport, then Add limiter to set. The master limiter's mixer strip sets the ceiling. Press <code>c</code> to change its mode and <code>b</code> to bypass it. The set remembers the limiter. The score-level <code>.limit()</code> is a separate effect.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/limiter.png" width="700" height="528" aria-label="Adding a limiter, moving its ceiling, cycling characters, bypassing it, then typing .limit() in the score.">
+<source src="videos/limiter.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Settings</h3>
+<p>Ctrl+O opens settings. Playback, look, samples, controllers, and key bindings are in there. Tab changes page.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/settings.png" width="700" height="528" aria-label="The settings sheet open on playback and look.">
+<source src="videos/settings.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Syntax check</h3>
+<p>Studio checks the score as you write. A pause after typing stops, and a bad call is underlined. The header counts the problems. The footer names the first one, often with a suggestion.</p>
+<p>Settings, then syntax check, picks the mode. <code>full</code> marks errors while you type. That is the default. <code>on update</code> marks them only when an update is refused. <code>off</code> leaves the editor unmarked. An update still refuses a bad score, and the footer and the log still say why.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/lint.png" width="700" height="528" aria-label="A typo underlined as you pause, then syntax check cycling through full, on update, and off.">
+<source src="videos/lint.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Mapping</h3>
+<p>Tab to Mapping on the settings sheet. Twelve slots sit in a grid. Enter on a slot, then move a MIDI knob, a fader, or a stick. That control drives the matching slider.</p>
+<p>Ctrl+L learns a pad for the scene you are on. Hit the pad. That pad launches the scene, the way a Maschine Mk3 pad fires a sound. Launch on, at the top of Settings, chooses the line it waits for. Off means the scene starts now. Beat, cycle, or a phrase waits.</p>
+<p>Rewind update is Ctrl+Shift+S. The scene plays from cycle zero. Ctrl+Shift+U keeps rewind on that scene, so every launch starts there.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/mapping.png" width="700" height="528" aria-label="A mapping slot learning a knob, then the assignment on the grid.">
+<source src="videos/mapping.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Split</h3>
+<p>Ctrl+E splits the editor. The other pane opens the next scene. With one scene in the set, Ctrl+E makes the second. F10 moves the caret across. You edit both.</p>
+<p>Update the pane you want to hear. Ctrl+Enter and F5 both do that. The title marks the sounding scene. Hop to the other pane and update, and that scene takes the sound. Ctrl+E again closes the split. Both scenes stay in the set.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/split.png" width="700" height="528" aria-label="The editor split across two scenes, then the sounding scene switching.">
+<source src="videos/split.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Hydra</h3>
+<p><code>await initHydra()</code>, then a chain that ends in <code>.out()</code>, draws behind the code. The picture follows the score. Visuals opacity in Settings sets the strength of the picture.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/hydra.png" width="700" height="528" aria-label="A moving Hydra pattern behind the score, light enough that the code stays readable.">
+<source src="videos/hydra.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Kitty pixels</h3>
+<p>Settings, then Advanced, then rendering, set to <code>Kitty pixels</code>. The scope, the piano roll, and Hydra draw as pictures, at the terminal's own resolution. Kitty draws them that way.</p>
+<p>Performance is not guaranteed. It depends on the terminal's implementation and on the computer.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/kitty.png" width="700" height="528" aria-label="Cell graphics, then Kitty pixels: Hydra behind the score, with a scope and a piano roll drawn at the terminal's resolution.">
+<source src="videos/kitty.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Record a take</h3>
+<p>Shift+F11 records the master mix. The header shows the running take. Press the chord again to finish. Studio writes a 24-bit stereo WAV to the recordings folder, which defaults to <code>~/.rustel/recordings/</code>. Change the folder in Settings, or use Transport → Reveal last export or take to find the file.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/take.png" width="700" height="528" aria-label="A take recording, with the minimap along the right edge.">
+<source src="videos/take.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Export</h3>
+<p>The visuals dock sits across the top, with a cat in ASCII and the mixer orbits under it. Ctrl+Shift+X exports the focused scene. Choose a length in cycles, or run until the sound falls quiet. Pick wav or mp3. The limiter can ride along. Enter writes the file.</p>
+<p>Transport, then Reveal last export or take, opens that file's folder. A take is the live master. Export renders the scene to a file.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/export.png" width="700" height="528" aria-label="A cat in ASCII and mixer orbits in a dock across the top, then the export sheet.">
+<source src="videos/export.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Record a sample</h3>
+<p>Ctrl+H records from your microphone or voice. Press it again to finish. The take lands in the recordings bank, ready to use right away. Ctrl+J pastes the name into the score. Chop that line, then update, and the slice plays.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/sample-rec.png" width="700" height="528" aria-label="REC SAMPLE, then the recording pasted into the score and chopped.">
+<source src="videos/sample-rec.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+<article class="row">
+<div>
+<h3>Sliders</h3>
+<p>Ctrl+J on a number offers to make a slider. After you update, the fader sits in the score. Every slider in the score also shows up on the mixer, so you can reach them without scrolling the score.</p>
+</div>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/slider.png" width="700" height="528" aria-label="A slider in the score, then that fader moving on the mixer.">
+<source src="videos/slider.mp4" type="video/mp4">
+</video>
+</figure>
+</article>
+
+</div>
+</section>
+
+<section aria-labelledby="terminal">
+<h2 id="terminal">The command line</h2>
+<p>Run the engine from a shell. Watch a file. Bounce a render. Query a cycle. Open Studio.</p>
+<pre class="shell"><span class="c"># play and reload on each stable save</span>
+<span class="prompt">$</span> <code>rustel song.strudel --watch</code>
+
+<span class="c"># bounce a render</span>
+<span class="prompt">$</span> <code>rustel render song.strudel -o take.wav --format scalar-wav --duration 60</code>
+
+<span class="c"># check a score without sound</span>
+<span class="prompt">$</span> <code>rustel check song.strudel</code>
+
+<span class="c"># replay a jam from its session tape</span>
+<span class="prompt">$</span> <code>rustel replay tonight.rustel-session</code>
+
+<span class="c"># list audio and MIDI devices</span>
+<span class="prompt">$</span> <code>rustel devices</code>
+
+<span class="c"># print one cycle as JSON</span>
+<span class="prompt">$</span> <code>rustel query -e 'note<span class="p">(</span><span class="s">&quot;c e g&quot;</span><span class="p">).</span>s<span class="p">(</span><span class="s">&quot;piano&quot;</span><span class="p">)</span>' --json</code>
+
+<span class="c"># install shell completion</span>
+<span class="prompt">$</span> <code>rustel completions --install</code>
+
+<span class="c"># open Studio on your last set (creates one on first use)</span>
+<span class="prompt">$</span> <code>rustel studio</code>
+
+<span class="c"># open a score file (starter score if the path is new)</span>
+<span class="prompt">$</span> <code>rustel studio song.strudel</code>
+
+<span class="c"># open a set folder</span>
+<span class="prompt">$</span> <code>rustel studio set/</code></pre>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/cli.png" width="700" height="528" aria-label="rustel --help, then vim above rustel --watch, then an export that stops on silence.">
+<source src="videos/cli.mp4" type="video/mp4">
+</video>
+</figure>
+</section>
+
+<section aria-labelledby="neovim">
+<h2 id="neovim">Neovim</h2>
+<p>The <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin plays the buffer you have open. Syntax colors the score. Active notes light up as they sound. Scope, piano roll, spectrum, and spiral draw in the buffer.</p>
+<figure class="shot">
+<video controls muted playsinline loop preload="none" loading="lazy" poster="videos/neovim.png" width="700" height="528" aria-label="A score in Neovim with syntax colors, sounding notes lit, and the visuals drawn in the buffer.">
+<source src="videos/neovim.mp4" type="video/mp4">
+</video>
+</figure>
+<p>Neovim 0.9 or newer, and rustel on your PATH. Ctrl+Enter updates. Ctrl+. stops.</p>
+</section>
+
+<section aria-labelledby="under-the-hood">
+<h2 id="under-the-hood">Under the hood</h2>
+<p>Rust schedules patterns and runs DSP. Sandboxed QuickJS evaluates Strudel JavaScript. Ratatui draws Studio. DSP kernels pick SIMD paths from your CPU for low CPU and memory use. <code>rustel doctor</code> and Studio's About panel show the active kernels.</p>
+</section>
+
+<section aria-labelledby="terminals">
+<h2 id="terminals">Terminal setup and known limits</h2>
+<ul class="features">
+<li><b>Pick a capable terminal</b>: Full colour, Unicode, and enhanced keyboard input help Studio. Start with Ghostty or iTerm2 on macOS. On Linux try kitty, Ghostty, WezTerm, or foot. On Windows use Windows Terminal. Studio adapts to what your terminal reports.</li>
+<li><b>Check your shortcuts</b>: <code>Ctrl+Enter</code> updates. <code>Ctrl+.</code> stops. Same chords as strudel.cc. If your terminal blocks those, use <code>Ctrl+S</code> / <code>F5</code> and <code>Ctrl+G</code> / <code>F8</code>. Open Settings → Keybinds to view or change bindings. On macOS use Control. Command works only when the terminal forwards Command.</li>
+<li><b>Expect display differences</b>: Fine glyphs and pixel graphics need terminal support. Studio falls back to cell graphics. The bare Linux console has weak colour, glyph, and shortcut support. Use a graphical terminal such as foot there.</li>
+</ul>
+<p class="aside">The <a href="https://github.com/tzfm/rustel/blob/main/docs/studio.md#shortcuts">Studio guide</a> covers terminal profiles, keyboard fallbacks, and graphics modes.</p>
+</section>
+
+<section aria-labelledby="support">
+<h2 id="support">Support Rustel</h2>
+<div class="support-card">
+<p>If Rustel is part of your music-making, consider a donation to support its development. Any amount is appreciated.</p>
+<p class="support-network">Ethereum &amp; EVM chains</p>
+<code class="wallet-address" id="donation-address">0x6900e16f4322130c54Ced2D80c12D396aA6d190f</code>
+<div class="support-actions">
+<button class="copy-button" type="button" id="copy-address" data-copy-target="donation-address" data-copy-status="copy-status" data-copy-label="Wallet address" hidden>Copy wallet address</button>
+<a href="https://etherscan.io/address/0x6900e16f4322130c54Ced2D80c12D396aA6d190f">View on Etherscan</a>
+</div>
+<p class="support-status" id="copy-status" role="status"></p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<nav aria-label="Footer">
+<a href="https://github.com/tzfm/rustel">Source on GitHub</a>
+<a href="https://github.com/tzfm/rustel/tree/main/docs">Documentation</a>
+<a href="#support">Support Rustel</a>
+</nav>
+<p>AGPL-3.0-or-later · Built on the <a href="https://strudel.cc">Strudel</a> pattern language.</p>
+</footer>
+
+<script id="clipboard-script">
+(function () {
+  document.querySelectorAll("[data-copy-target]").forEach(function (button) {
+    var target = document.getElementById(button.dataset.copyTarget);
+    var status = document.getElementById(button.dataset.copyStatus);
+    var label = button.dataset.copyLabel;
+    var feedback = button.querySelector(".copy-feedback");
+    var feedbackTimer;
+
+    button.addEventListener("click", async function () {
+      button.disabled = true;
+      clearTimeout(feedbackTimer);
+      delete button.dataset.copied;
+      delete status.dataset.success;
+      status.textContent = "";
+      try {
+        await navigator.clipboard.writeText(target.textContent.trim());
+        status.textContent = feedback ? "Copied!" : label + " copied.";
+        if (feedback) {
+          status.dataset.success = "1";
+          button.dataset.copied = "1";
+          feedbackTimer = setTimeout(function () {
+            delete button.dataset.copied;
+          }, 3000);
+        }
+      } catch (error) {
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var selection = window.getSelection();
+        if (selection) {
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+        status.textContent = "Copy unavailable. Select and copy the " + label.toLowerCase() + ".";
+      } finally {
+        button.disabled = false;
+      }
+    });
+    button.hidden = false;
+  });
+})();
+</script>
+<script>
+var platform = (navigator.userAgentData && navigator.userAgentData.platform)
+  || navigator.platform || navigator.userAgent;
+var os = /win/i.test(platform) ? "windows"
+  : /mac/i.test(platform) ? "macos"
+  : /linux|x11/i.test(platform) ? "linux" : null;
+if (os) document.getElementById("os-" + os).checked = true;
+</script>
+<script>
+(function () {
+  var clips = document.querySelectorAll("figure.studio video, figure.shot video");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (!clips.length || reduce || saveData || !("IntersectionObserver" in window)) return;
+  var automaticPauses = new WeakMap();
+  var touch = window.matchMedia("(hover: none)").matches;
+
+  function pause(video) {
+    if (video.paused) return;
+    automaticPauses.set(video, (automaticPauses.get(video) || 0) + 1);
+    video.pause();
+  }
+
+  function play(video) {
+    if (video.dataset.pausedByUser) return;
+    var pending = video.play();
+    if (pending && pending.catch) pending.catch(function () {});
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var video = entry.target;
+      if (entry.isIntersecting) {
+        video.dataset.inview = "1";
+        if (!document.hidden) play(video);
+      } else {
+        delete video.dataset.inview;
+        pause(video);
+      }
+    });
+  }, { rootMargin: "400px" });
+
+  clips.forEach(function (video) {
+    if (touch) {
+      // Native controls cover a small clip on a phone. A tap pauses or resumes the clip.
+      video.controls = false;
+      video.addEventListener("click", function () {
+        if (video.paused) {
+          delete video.dataset.pausedByUser;
+          play(video);
+        } else {
+          video.pause();
+        }
+      });
+    }
+    video.addEventListener("pause", function () {
+      var pending = automaticPauses.get(video) || 0;
+      if (pending) {
+        automaticPauses.set(video, pending - 1);
+        return;
+      }
+      video.dataset.pausedByUser = "1";
+    });
+    video.addEventListener("play", function () {
+      delete video.dataset.pausedByUser;
+    });
+    observer.observe(video);
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    clips.forEach(function (video) {
+      if (document.hidden) pause(video);
+      else if (video.dataset.inview) play(video);
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -29,7 +29,7 @@
 <img class="logo" src="logo.svg" width="740" height="180" alt="Rustel">
 
 <h1>Live-code music in your terminal.</h1>
-<p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, or in your favorite text editor. MIDI, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
+<p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, or in your favorite text editor. <span class="spot">VST3 plugins</span>, MIDI, <span class="spot">Ableton Link</span>, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
 <p class="lead">Already on <a href="https://strudel.cc">strudel.cc</a>? Bring your patterns here. Almost everything from Strudel works. The <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> list the few missing or inactive features.</p>
 </header>
 
@@ -86,7 +86,7 @@
 </button>
 </div>
 <p class="copy-status" id="copy-windows-status" role="status"></p>
-<p>Windows 10 or later, x86_64, in PowerShell 5 or later. Open a new terminal, then run <code>rustelup.cmd</code> to install the engine. Then run <code>rustel studio</code>.</p>
+<p>Windows 10 or later, x86_64, in PowerShell 5 or later. Open a new terminal, then run <code>rustelup</code> to install the engine. Then run <code>rustel studio</code>.</p>
 </div>
 </div>
 <p class="aside"><code>rustelup</code> installs into <code>~/.rustel/bin</code>. On Windows that folder is <code>%USERPROFILE%\.rustel\bin</code>. Run the updater again to refresh, or add <code>--version v&lt;version number here&gt;</code> to pin a build. For dependencies and troubleshooting, see the <a href="https://github.com/tzfm/rustel/blob/main/rustelup/README.md">installation guide</a>. To build from source, follow the <a href="https://github.com/tzfm/rustel/blob/main/docs/building.md">build guide</a>.</p>
@@ -97,11 +97,12 @@
 <ul class="features">
 <li><b>Strudel patterns</b>: Patterns, samples, synths, and effects from the Strudel language. Supported unless listed in the <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a>.</li>
 <li><b>Native extensions</b>: Standard builds ship extensions from Switch Angel and undefined_aeon. More extensions from other Strudel artists will land natively over time.</li>
+<li><b>KabelSalat graphs</b>: <code>K(...)</code> runs KabelSalat synths and effects through a native graph engine, with patterned inputs, polyphony, and feedback. <code>.FX(K(...))</code> puts a graph on any pattern. The <a href="https://github.com/tzfm/rustel/blob/main/docs/kabelsalat.md">graphs guide</a> holds examples and limits.</li>
 <li><b>Sound checks</b>: Selected scores render in both engines. Waveforms are compared offline for fixed scores, assets, and settings.</li>
 <li><b>Studio</b>: Terminal editor with live update, visuals, a mixer, and a key reference. A bad update leaves the last good score playing.</li>
 <li><b>Your editor</b>: Run <code>rustel song.strudel --watch</code> and edit in your favorite editor. Audio keeps running across saves. Or use the <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin to drive the engine from Neovim.</li>
 <li><b>Session tapes</b>: Each installed update is logged with time. Your jam stays on disk. No arm step. No extra save ritual.</li>
-<li><b>Hardware</b>: Speakers, a microphone or other audio input, MIDI, OSC, or serial. MIDI clock can follow another tempo, or send this set's tempo out.</li>
+<li><b>Hardware</b>: Speakers, a microphone or other audio input, MIDI, OSC, or serial. MIDI clock or Ableton Link can follow another tempo, or send this set's tempo out.</li>
 <li><b>Offline render</b>: Bounce to WAV or MP3. Same score, assets, and settings on one machine give repeatable output.</li>
 <li><b>Audio thread</b>: Rational cycle math, a native mini-notation parser, and a DSP graph with no allocation on the audio path. SIMD kernels follow your CPU. Low CPU and memory in live play. An error mutes one cycle of one pattern. The clock keeps going.</li>
 </ul>
@@ -256,9 +257,10 @@
 
 <article class="row">
 <div>
-<h3>MIDI</h3>
+<h3>MIDI and Link</h3>
 <p>The midi tab gives each port an in box and an out box. Left and right pick the column. Space ticks it. <code>.midi()</code> sends on a ticked out. <code>midin()</code> reads a ticked in.</p>
 <p>Clock out sends this set's tempo, 24 pulses a beat, with start and stop. Clock in follows another machine. The header shows <code>⇄</code> and the bpm it locked. You still start the score.</p>
+<p>The link tab joins an Ableton Link session. Tempo, start, and stop are shared with the other participants, DAWs or rustel instances on the local network or the same machine. A session that starts playing starts the set. One that stops stops it. Joining releases the clock in.</p>
 </div>
 <figure class="shot">
 <video controls muted playsinline loop preload="none" loading="lazy" poster="videos/midi.png" width="700" height="528" aria-label="MIDI ports with in and out boxes, a pattern sending with .midi(), then clock out and clock in, and the header tempo locking to an external clock.">

@@ -30,7 +30,7 @@
 
 <h1>Live-code music in your terminal.</h1>
 <p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, or in your favorite text editor. <span class="spot">VST3 plugins</span>, MIDI, <span class="spot">Ableton Link</span>, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
-<p class="lead">Already on <a href="https://strudel.cc">strudel.cc</a>? Bring your patterns here. Almost everything from Strudel works. The <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> list the few missing or inactive features.</p>
+<p class="lead">Already on <a href="https://strudel.cc">strudel.cc</a>? Bring your patterns here. Almost everything from Strudel works. The <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> describe native support limits and missing or inactive features.</p>
 </header>
 
 <main>
@@ -95,9 +95,10 @@
 <section aria-labelledby="what">
 <h2 id="what"><a class="anchor" href="#what" aria-label="Link to What you get">#</a> What you get</h2>
 <ul class="features">
-<li><b>Strudel patterns</b>: Patterns, samples, synths, and effects from the Strudel language. Supported unless listed in the <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a>.</li>
+<li><b>Strudel patterns</b>: Patterns, samples, synths, and effects from the Strudel language. See the <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> for native support and limits.</li>
 <li><b>Native extensions</b>: Standard builds ship extensions from Switch Angel and undefined_aeon. More extensions from other Strudel artists will land natively over time.</li>
 <li><b>KabelSalat graphs</b>: <code>K(...)</code> runs KabelSalat synths and effects through a native graph engine, with patterned inputs, polyphony, and feedback. <code>.FX(K(...))</code> puts a graph on any pattern. The <a href="https://github.com/tzfm/rustel/blob/main/docs/kabelsalat.md">graphs guide</a> holds examples and limits.</li>
+<li><b>Csound instruments</b>: Sequence bundled instruments or custom orchestras with patterns for live playback and audio export. Requires double-precision Csound 6.18 or a later 6.x release. Studio enables native orchestras at startup. One-shot commands require <code>--allow-csound</code>. See the <a href="https://github.com/tzfm/rustel/blob/main/docs/csound.md">Csound guide</a> for setup and limits.</li>
 <li><b>Sound checks</b>: Selected scores render in both engines. Waveforms are compared offline for fixed scores, assets, and settings.</li>
 <li><b>Studio</b>: Terminal editor with live update, visuals, a mixer, and a key reference. A bad update leaves the last good score playing.</li>
 <li><b>Your editor</b>: Run <code>rustel song.strudel --watch</code> and edit in your favorite editor. Audio keeps running across saves. Or use the <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin to drive the engine from Neovim.</li>

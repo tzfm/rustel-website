@@ -397,6 +397,7 @@ main > section > p {
   align-items: flex-start;
   gap: 1rem;
   margin: 2.75rem 0;
+  scroll-margin-top: 1.5rem;
 }
 
 .row > div {

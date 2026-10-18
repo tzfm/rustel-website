@@ -130,7 +130,7 @@
 <h2 id="gallery">In the studio</h2>
 <div class="gallery">
 
-<article class="row">
+<article class="row" id="widgets">
 <div>
 <h3>Widgets</h3>
 <p>Shift+F1 opens a dock of widgets beside the score. Add a scope, a spectrum, a vectorscope, or the event list. Press <code>a</code> to add one. The pictures move with the music.</p>
@@ -142,7 +142,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="themes">
 <div>
 <h3>Themes</h3>
 <p>Ctrl+T opens the theme list. Arrow to a theme and press Enter. You can edit a theme. A theme can draw a Hydra background.</p>
@@ -154,7 +154,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="tapes">
 <div>
 <h3>Session tapes</h3>
 <p>The first successful update creates a tape in the set's <code>sessions/</code> folder. It records accepted scores, timing, slider changes, and stops. To capture the audio, record a take. Open a tape from the set panel, or replay it from the shell.</p>
@@ -170,7 +170,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="samples">
 <div>
 <h3>Samples</h3>
 <p>Open Reference with Ctrl+F, then use Tab to reach Samples. Right expands a bank. Space starts or stops a preview. Enter inserts or copies the selection, as shown in the footer. Drop an audio file or folder on the terminal window running Studio to import it.</p>
@@ -182,7 +182,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="chords">
 <div>
 <h3>Chords and scales</h3>
 <p>Chords and scales are the next two tabs. Each row draws its notes on a keyboard. Right opens the row. Space plays the chord or the scale. The keys light while it sounds.</p>
@@ -194,7 +194,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="reference">
 <div>
 <h3>Reference</h3>
 <p>Ctrl+D opens documentation for the function at the caret. Ctrl+F shows names, values, or functions that fit the caret position; outside a call, it opens the reference to browse and search. Enter uses the selection, as shown in the footer.</p>
@@ -206,7 +206,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="visuals">
 <div>
 <h3>Visuals</h3>
 <p><code>_pianoroll()</code>, <code>_scope()</code>, <code>_spectrum()</code>, <code>_punchcard()</code>, and the rest draw inside the score. The playhead moves with the clock.</p>
@@ -218,7 +218,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="generator">
 <div>
 <h3>Generator and examples</h3>
 <p>The generator tab builds a part from a musical direction. The examples tab holds parts, tracks, sound design, and Hydra sketches. In either tab, Space previews the music and <code>c</code> copies the code. Paste it into the editor, then update the score to play it.</p>
@@ -230,7 +230,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="mixer">
 <div>
 <h3>Mixer</h3>
 <p>F4 opens the mixer. The master and each orbit have a meter and a fader. Ctrl+Shift+Up and Ctrl+Shift+Down move the master.</p>
@@ -242,7 +242,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="input">
 <div>
 <h3>Live input</h3>
 <p>Ctrl+P opens devices. Enter on audio in makes the highlighted row what <code>s("in")</code> plays. <code>none</code> turns the input off. F4 opens the mixer. The <code>in</code> strip meters that input, and its fader sets the gain. <code>s("in")</code> plays channel 0. <code>s("in:1")</code> plays the next channel. <code>s("in").lpf(700)</code> filters the input.</p>
@@ -255,7 +255,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="midi">
 <div>
 <h3>MIDI and Link</h3>
 <p>The midi tab gives each port an in box and an out box. Left and right pick the column. Space ticks it. <code>.midi()</code> sends on a ticked out. <code>midin()</code> reads a ticked in.</p>
@@ -269,7 +269,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="limiter">
 <div>
 <h3>Limiter</h3>
 <p>Open Transport, then Add limiter to set. The master limiter's mixer strip sets the ceiling. Press <code>c</code> to change its mode and <code>b</code> to bypass it. The set remembers the limiter. The score-level <code>.limit()</code> is a separate effect.</p>
@@ -281,7 +281,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="settings">
 <div>
 <h3>Settings</h3>
 <p>Ctrl+O opens settings. Playback, look, samples, controllers, and key bindings are in there. Tab changes page.</p>
@@ -293,7 +293,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="syntax">
 <div>
 <h3>Syntax check</h3>
 <p>Studio checks the score as you write. A pause after typing stops, and a bad call is underlined. The header counts the problems. The footer names the first one, often with a suggestion.</p>
@@ -306,7 +306,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="mapping">
 <div>
 <h3>Mapping</h3>
 <p>Tab to Mapping on the settings sheet. Twelve slots sit in a grid. Enter on a slot, then move a MIDI knob, a fader, or a stick. That control drives the matching slider.</p>
@@ -320,7 +320,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="split">
 <div>
 <h3>Split</h3>
 <p>Ctrl+E splits the editor. The other pane opens the next scene. With one scene in the set, Ctrl+E makes the second. F10 moves the caret across. You edit both.</p>
@@ -333,7 +333,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="hydra">
 <div>
 <h3>Hydra</h3>
 <p><code>await initHydra()</code>, then a chain that ends in <code>.out()</code>, draws behind the code. The picture follows the score. Visuals opacity in Settings sets the strength of the picture.</p>
@@ -345,7 +345,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="kitty">
 <div>
 <h3>Kitty pixels</h3>
 <p>Settings, then Advanced, then rendering, set to <code>Kitty pixels</code>. The scope, the piano roll, and Hydra draw as pictures, at the terminal's own resolution. Kitty draws them that way.</p>
@@ -358,7 +358,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="take">
 <div>
 <h3>Record a take</h3>
 <p>Shift+F11 records the master mix. The header shows the running take. Press the chord again to finish. Studio writes a 24-bit stereo WAV to the recordings folder, which defaults to <code>~/.rustel/recordings/</code>. Change the folder in Settings, or use Transport → Reveal last export or take to find the file.</p>
@@ -370,7 +370,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="export">
 <div>
 <h3>Export</h3>
 <p>The visuals dock sits across the top, with a cat in ASCII and the mixer orbits under it. Ctrl+Shift+X exports the focused scene. Choose a length in cycles, or run until the sound falls quiet. Pick wav or mp3. The limiter can ride along. Enter writes the file.</p>
@@ -383,7 +383,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="sample-rec">
 <div>
 <h3>Record a sample</h3>
 <p>Ctrl+H records from your microphone or voice. Press it again to finish. The take lands in the recordings bank, ready to use right away. Ctrl+J pastes the name into the score. Chop that line, then update, and the slice plays.</p>
@@ -395,7 +395,7 @@
 </figure>
 </article>
 
-<article class="row">
+<article class="row" id="sliders">
 <div>
 <h3>Sliders</h3>
 <p>Ctrl+J on a number offers to make a slider. After you update, the fader sits in the score. Every slider in the score also shows up on the mixer, so you can reach them without scrolling the score.</p>

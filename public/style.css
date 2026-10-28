@@ -67,6 +67,7 @@ code {
   padding: 0.12em 0.4em;
   border: 1px solid var(--rule);
   border-radius: 0;
+  white-space: nowrap;
 }
 
 h1,
@@ -226,7 +227,6 @@ h2 {
   max-width: 100%;
   font-size: 0.875rem;
   color: var(--muted);
-  overflow-wrap: anywhere;
 }
 
 .aside {

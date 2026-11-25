@@ -30,7 +30,7 @@
 <img class="logo" src="logo.svg" width="740" height="180" alt="Rustel">
 
 <h1>Live-code music in your terminal.</h1>
-<p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, or in your favorite text editor. <span class="spot">VST3 plugins</span>, MIDI, <span class="spot">Ableton Link</span>, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
+<p class="lead"><code>rustel</code> is a native engine for the <a href="https://strudel.cc">Strudel</a> pattern language. Use the full-fledged embedded <a href="#studio">Studio</a> for music production and live performance. Or live-code in <a href="#neovim">Neovim</a>, <a href="#vscode">VS Code</a>, or your favorite text editor. <span class="spot">VST3 plugins</span>, MIDI, <span class="spot">Ableton Link</span>, low-latency audio in, OSC for SuperDirt, serial, webcam, and gamepad are built in. One binary. No browser. No server.</p>
 <p class="lead">Already on <a href="https://strudel.cc">strudel.cc</a>? Bring your patterns here. Almost everything from Strudel works. The <a href="https://github.com/tzfm/rustel/blob/main/docs/compatibility.md">compatibility docs</a> describe native support limits and missing or inactive features.</p>
 </header>
 
@@ -102,7 +102,7 @@
 <li><b>Csound instruments</b>: Sequence bundled instruments or custom orchestras with patterns for live playback and audio export. Requires double-precision Csound 6.18 or a later 6.x release. Studio enables native orchestras at startup. One-shot commands require <code>--allow-csound</code>. See the <a href="https://github.com/tzfm/rustel/blob/main/docs/csound.md">Csound guide</a> for setup and limits.</li>
 <li><b>Sound checks</b>: Selected scores render in both engines. Waveforms are compared offline for fixed scores, assets, and settings.</li>
 <li><b>Studio</b>: Terminal editor with live update, visuals, a mixer, and a key reference. A bad update leaves the last good score playing.</li>
-<li><b>Your editor</b>: Run <code>rustel song.strudel --watch</code> and edit in your favorite editor. Audio keeps running across saves. Or use the <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin to drive the engine from Neovim.</li>
+<li><b>Your editor</b>: Run <code>rustel song.strudel --watch</code> and edit in your favorite editor. Audio keeps running across saves. Or use the <a href="https://github.com/tzfm/rustel-neovim">rustel-neovim</a> plugin for Neovim or the <a href="https://github.com/tzfm/rustel-vscode">rustel-vscode</a> extension for VS Code. The built-in language server, <code>rustel lsp --stdio</code>, gives completion, hover docs, and lint diagnostics in any editor with LSP support.</li>
 <li><b>Session tapes</b>: Each installed update is logged with time. Your jam stays on disk. No arm step. No extra save ritual.</li>
 <li><b>Hardware</b>: Speakers, a microphone or other audio input, MIDI, OSC, or serial. MIDI clock or Ableton Link can follow another tempo, or send this set's tempo out.</li>
 <li><b>Offline render</b>: Bounce to WAV or MP3. Same score, assets, and settings on one machine give repeatable output.</li>
@@ -460,6 +460,13 @@
 </video>
 </figure>
 <p>Neovim 0.9 or newer, and rustel on your PATH. Ctrl+Enter updates. Ctrl+. stops.</p>
+</section>
+
+<section aria-labelledby="vscode">
+<h2 id="vscode"><a class="anchor" href="#vscode" aria-label="Link to VS Code and other editors">#</a> VS Code and other editors</h2>
+<p>The <a href="https://github.com/tzfm/rustel-vscode">rustel-vscode</a> extension plays the score you have open. Hover a function to read its docs. Completion offers methods, sounds, scales, and chords. Lint marks errors as you type. Active notes light up as they sound.</p>
+<p>rustel on your PATH. Ctrl+Enter plays or updates. Ctrl+Shift+Enter plays the selection or current line. Ctrl+. stops. On macOS use Cmd.</p>
+<p>Another editor? <code>rustel lsp --stdio</code> is a built-in language server. Register it for <code>.strudel</code> files in Emacs, Helix, Zed, or any LSP client. The <a href="https://github.com/tzfm/rustel/blob/main/docs/integrations.md#language-server-lsp">integrations guide</a> lists what it supports.</p>
 </section>
 
 <section aria-labelledby="under-the-hood">
